@@ -189,3 +189,45 @@ footer {
 .border-30 { border-color: var(--color-30) !important; }
 .text-10 { color: var(--color-10) !important; }
 .text-30 { color: var(--color-30) !important; }
+
+
+/* Footer styles */
+.footer {
+  background-color: var(--color-30); /* Green background */
+  color: var(--text-inverse);
+}
+
+.footer p {
+  color: #e6e6e6;
+}
+
+.footer-link {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.footer-link:hover {
+  color: var(--color-10); /* Pink accent on hover */
+}
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: var(--color-30);
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+.social-icon:hover {
+  background-color: var(--color-10);
+  color: #ffffff;
+}
+
+.footer-divider {
+  border-color: rgba(255,255,255,0.2);
+}
+
