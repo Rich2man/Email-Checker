@@ -1,0 +1,54 @@
+/* ===== Design tokens ===== */
+:root {
+    --primary-bg: #ffffff;           /* Primary background (60%) */
+    --navbar-bg: #51bf30;            /* Navbar/secondary background (30%) */
+    --accent-bg: #f03a67;            /* Accent background (10%) */
+    --accent-bg-hover: #d8325a;      /* Accent background hover */
+    --text-main: #121212;            /* Main text */
+    --navbar-link: #ffffff;          /* Navbar link text */
+    --navbar-link-hover: #f03a67;    /* Navbar link hover (accent) */
+    --accent-text: #ffffff;          /* Text on accent backgrounds */
+    --border-muted: #e6e6e6;         /* Light borders */
+    --shadow-soft: 0 6px 24px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+}
+
+/*  <!-- Navbar --> */
+
+/* Navbar background (30% color) */
+.navbar {
+    background-color: var(--navbar-bg);
+}
+
+/* White text for links */
+.navbar .nav-link {
+    color: var(--navbar-link);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+}
+
+/* Hover effect with accent (10% color) */
+.navbar .nav-link:hover {
+    color: var(--navbar-link-hover);
+}
+/* Accent button */
+.btn-accent {
+    background-color: var(--accent-bg);
+    color: var(--accent-text);
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.btn-accent:hover {
+    background-color: var(--accent-bg-hover);
+    color: var(--accent-text);
+}
+
+/* Mobile toggler icon color fix */
+.navbar-toggler {
+    border-color: rgba(255,255,255,0.3);
+}
+.navbar-toggler-icon {
+    filter: invert(1);
+}
