@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/body.css">
+  <link rel="stylesheet" href="css/utill.css">
 </head>
 <body>
 
@@ -18,7 +19,7 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container">
     <!-- Brand -->
-    <a class="navbar-brand fw-bold text-white" href="#">EmailChecker</a>
+    <a class="navbar-brand fw-bold text-white" href="main-page.html">EmailChecker</a>
 
     <!-- Mobile Toggle -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
@@ -29,22 +30,22 @@
     <div class="collapse navbar-collapse" id="mainNav">
       <ul class="navbar-nav ms-auto align-items-lg-center">
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Why Us</a>
+          <a class="nav-link text-white" href="why_us.html">Why Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Explore Plans</a>
+          <a class="nav-link text-white" href="explore_plans.html">Explore Plans</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Email-Checker</a>
+          <a class="nav-link text-white" href="email-checker.html">Email-Checker</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Help</a>
+          <a class="nav-link text-white" href="help.html">Help</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Login</a>
+          <a class="nav-link text-white" href="login.html">Login</a>
         </li>
         <li class="nav-item ms-lg-3">
-          <a class="btn btn-accent" href="#">Sign Up</a>
+          <a class="btn btn-accent" href="signup.html">Sign Up</a>
         </li>
       </ul>
     </div>
@@ -70,13 +71,46 @@
           <h2 class="fw-bold text-center text-uppercase mb-4">Try It Now</h2>
           <div class="d-flex flex-column flex-md-row">
             <input type="email" id="emailInput" class="form-control me-md-2 mb-3 mb-md-0" placeholder="Enter email">
-            <button class="btn btn-primary" onclick="handleCheck()">Check</button>
+            <button class="btn btn-accent btn-danger" onclick="handleCheck()">Check</button>
           </div>
 
-          <div class="text-center mt-3">
-            <button class="btn btn-outline-primary me-2">Download CSV</button>
-            <button class="btn btn-outline-secondary">Download Excel</button>
-          </div>
+            <div class="text-center mt-3">
+    <button class="btn btn-outline-danger me-2" data-bs-toggle="modal" data-bs-target="#registerModal">
+      Download CSV
+    </button>
+    <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#registerModal">
+      Download Excel
+    </button>
+  </div>
+
+  <!-- Registration Required Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content section-card p-3">
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold green-text-color" id="registerModalLabel">
+          <i class="fa-solid fa-user-lock me-2 text-danger"></i>
+          Registration Required
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p class="mb-3 fs-6">
+          Please register or log in to access the download features.<br><br>
+          Creating an account is free and gives you access to CSV and Excel exports, usage tracking, and more.
+        </p>
+        <div class="d-flex flex-column flex-md-row justify-content-center gap-2">
+          <a href="signup.html" class="btn btn-danger">Sign Up</a>
+          <a href="login.html" class="btn btn-secondary">Log In</a>
+        </div>
+        <hr class="my-3">
+        <small class="text-muted">
+          Already have an account? Log in to unlock all features.
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
 
           <div class="mt-4 text-center" id="resultBox"></div>
         </div>
@@ -167,19 +201,19 @@
       <div class="col-md-4 text-center">
         <h6 class="fw-bold text-white mb-3">Quick Links</h6>
         <ul class="list-unstyled">
-          <li><a href="#" class="footer-link">Home</a></li>
-          <li><a href="#" class="footer-link">About</a></li>
-          <li><a href="#" class="footer-link">Login</a></li>
-          <li><a href="#" class="footer-link">Sign-Up</a></li>
+          <li><a href="main-page.html" class="footer-link">Home</a></li>
+          <li><a href="why_us.html" class="footer-link">About</a></li>
+          <li><a href="login.html" class="footer-link">Login</a></li>
+          <li><a href="signup.html" class="footer-link">Sign-Up</a></li>
         </ul>
       </div>
 
       <!-- Social Media -->
       <div class="col-md-4 text-center text-md-end">
         <h6 class="fw-bold text-white mb-3">Follow Us</h6>
-        <a href="#" class="social-icon me-2"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="social-icon me-2"><i class="bi bi-twitter"></i></a>
-        <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+        <a href="#" class="social-icon me-2"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-icon me-2"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-telegram-plane"></i></a>
       </div>
     </div>
 
@@ -197,6 +231,7 @@
 
 
   <script src="script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+   <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

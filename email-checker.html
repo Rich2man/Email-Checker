@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Email-Checker | Email Checker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/body.css">
+  <link rel="stylesheet" href="css/utill.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-white" href="index.html">EmailChecker</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link text-white" href="why_us.html">Why Us</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="explore_plans.html">Explore Plans</a></li>
+          <li class="nav-item"><a class="nav-link text-white active" href="#">Email-Checker</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Help</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Login</a></li>
+          <li class="nav-item ms-lg-3"><a class="btn btn-accent" href="#">Sign Up</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero text-center py-5 mt-5">
+    <div class="container">
+      <h1 class="fw-bold mb-3" style="color: var(--color-30);">Email-Checker Tool</h1>
+      <p class="lead mb-0" style="color: #444;">
+        Instantly verify email addresses for accuracy, deliverability, and security. Export results, track usage, and enjoy peace of mind.
+      </p>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section text-center">
+    <div class="container">
+      <h2 class="fw-bold mb-4">How Email-Checker Works</h2>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-4">
+          <div class="section-card p-4 h-100">
+            <div class="feature-icon mb-3 bg-30">
+              <i class="fa-solid fa-envelope-open-text good-bet-icon"></i>
+            </div>
+            <h5 class="fw-bold">1. Enter Email</h5>
+            <p>Type or paste the email address you want to check in the input box.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="section-card p-4 h-100">
+            <div class="feature-icon mb-3 bg-10">
+              <i class="fa-solid fa-magnifying-glass good-bet-icon"></i>
+            </div>
+            <h5 class="fw-bold">2. Click Check</h5>
+            <p>Our system analyzes the email for syntax, domain, and deliverability in real time.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="section-card p-4 h-100">
+            <div class="feature-icon mb-3 bg-30">
+              <i class="fa-solid fa-circle-check good-bet-icon"></i>
+            </div>
+            <h5 class="fw-bold">3. Get Results</h5>
+            <p>See if the email is valid, invalid, or risky. Download results as CSV or Excel (registration required).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Demo Section -->
+  <section class="section bg-light py-5">
+    <div class="container">
+      <h2 class="fw-bold mb-4 text-center" style="color: var(--color-30);">Try Email-Checker Now</h2>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="section-card p-4 p-md-5">
+            <div class="d-flex flex-column flex-md-row mb-3">
+              <input type="email" id="emailInputDemo" class="form-control me-md-2 mb-3 mb-md-0" placeholder="Enter email">
+              <button class="btn btn-primary" onclick="alert('This is a demo. Implement backend to check emails.')">Check</button>
+            </div>
+            <div class="text-center mt-3">
+              <button class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#registerModal">Download CSV</button>
+              <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#registerModal">Download Excel</button>
+            </div>
+            <div class="mt-4 text-center" id="resultBoxDemo"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Registration Required Modal -->
+  <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content section-card p-3">
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold" id="registerModalLabel">
+            <i class="fa-solid fa-user-lock me-2 text-danger"></i>
+            Registration Required
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <p class="mb-3 fs-5">
+            Please register or log in to access the download features.<br>
+            Creating an account is free and gives you access to CSV and Excel exports, usage tracking, and more.
+          </p>
+          <div class="d-flex flex-column flex-md-row justify-content-center gap-2">
+            <a href="#" class="btn btn-primary">Sign Up</a>
+            <a href="#" class="btn btn-outline-secondary">Log In</a>
+          </div>
+          <hr class="my-3">
+          <small class="text-muted">
+            Already have an account? Log in to unlock all features.
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Benefits Section -->
+  <section class="section text-center">
+    <div class="container">
+      <h2 class="fw-bold mb-4">Why Use Email-Checker?</h2>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-4">
+          <div class="section-card p-4 h-100">
+            <div class="feature-icon mb-3 bg-30">
+              <i class="fa-solid fa-shield-halved good-bet-icon"></i>
+            </div>
+            <h5 class="fw-bold">Secure & Private</h5>
+            <p>Your data is protected with strong encryption and never shared.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="section-card p-4 h-100">
+            <div class="feature-icon mb-3 bg-10">
+              <i class="fa-solid fa-bolt good-bet-icon"></i>
+            </div>
+            <h5 class="fw-bold">Fast & Reliable</h5>
+            <p>Get instant results with high accuracy and uptime.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="section-card p-4 h-100">
+            <div class="feature-icon mb-3 bg-30">
+              <i class="fa-solid fa-download good-bet-icon"></i>
+            </div>
+            <h5 class="fw-bold">Easy Export</h5>
+            <p>Download your results in CSV or Excel format for further use.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer py-5">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-4 text-center text-md-start">
+          <h5 class="fw-bold text-white">EmailChecker</h5>
+          <p class="mb-0">Fast, accurate, and secure email verification.</p>
+        </div>
+        <div class="col-md-4 text-center">
+          <h6 class="fw-bold text-white mb-3">Quick Links</h6>
+          <ul class="list-unstyled">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="why_us.html" class="footer-link">Why Us</a></li>
+            <li><a href="#" class="footer-link">Login</a></li>
+            <li><a href="#" class="footer-link">Sign-Up</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 text-center text-md-end">
+          <h6 class="fw-bold text-white mb-3">Follow Us</h6>
+          <a href="#" class="social-icon me-2"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon me-2"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-telegram-plane"></i></a>
+        </div>
+      </div>
+      <hr class="footer-divider my-4">
+      <div class="text-center small">
+        &copy; 2025 EmailChecker. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

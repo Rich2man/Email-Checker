@@ -1,0 +1,21 @@
+:root {
+    --primary-bg: #ffffff;           /* Primary background (60%) */
+    --navbar-bg: #51bf30;            /* Navbar/secondary background (30%) */
+    --accent-bg: #f03a67;            /* Accent background (10%) */
+    --accent-bg-hover: #d8325a;      /* Accent background hover */
+    --text-main: #121212;            /* Main text */
+    --navbar-link: #ffffff;          /* Navbar link text */
+    --navbar-link-hover: #f03a67;    /* Navbar link hover (accent) */
+    --accent-text: #ffffff;          /* Text on accent backgrounds */
+    --border-muted: #e6e6e6;         /* Light borders */
+    --shadow-soft: 0 6px 24px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+}
+
+
+.green-text-color {
+    color: var(--navbar-bgs);
+}
+.btn-color {
+    background-color: var(--accent-bg);
+    color: var(--accent-text);
+}
