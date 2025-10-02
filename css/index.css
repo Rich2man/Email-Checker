@@ -53,3 +53,14 @@
 .navbar-toggler-icon {
     filter: invert(1);
 }
+
+.Add-To-file {
+    background-color: var(--navbar-bg);
+    color: var(--accent-text);
+
+}
+
+.Add-To-file:hover {
+    color: var(--navbar-bg);
+    border: 1.5px solid var(--navbar-bg);
+}

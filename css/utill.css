@@ -19,3 +19,31 @@
     background-color: var(--accent-bg);
     color: var(--accent-text);
 }
+
+.active-add-file {
+    background-color: var(--navbar-bg);
+    color: var(--accent-text);
+}
+
+.checkbox-color:checked {
+    background-color: var(--navbar-bg);
+    color: var(--navbar-bg);
+}
+
+.file-color {
+    color: rgb(209, 208, 208);
+}
+.rename-file-item .file-name, .rename-file-item .pen-icon {
+    cursor: pointer;
+}
+.pen-icon {
+    color: rgb(209, 208, 208);
+    transition: color 0.2s;
+}
+.pen-icon:hover {
+    color: #f03a67;
+}
+.rename-input {
+    min-width: 120px;
+    margin-left: 2px;
+}

@@ -56,42 +56,54 @@
             <h2 class="fw-bold text-center text-uppercase mb-4">Try EmailChecker</h2>
             <div class="d-flex flex-column flex-md-row">
               <input type="email" id="emailInput" class="form-control me-md-2 mb-3 mb-md-0" placeholder="Enter email">
-              <button class="btn btn-danger" onclick="alert('This is a demo. Implement backend to check emails.')">Check</button>
+              <button class="btn btn-danger" onclick="handleCheck()">Check</button>
             </div>
             <div class="text-center mt-3">
-              <button class="btn btn-outline-primary me-2" onclick="document.getElementById('features-section').scrollIntoView({behavior: 'smooth'});">Download CSV</button>
-              <button class="btn btn-outline-secondary" onclick="document.getElementById('features-section').scrollIntoView({behavior: 'smooth'});">Download Excel</button>
+              <button class="btn btn-outline-danger me-2" onclick="downloadCSV()">Download CSV</button>
+              <button class="btn btn-outline-danger" onclick="downloadExcel()">Download Excel</button>
+              <button class="btn Add-To-file me-2" onclick="showRegisterModal()">Add to File</button>
             </div>
             <div class="mt-4 text-center" id="resultBox"></div>
+            <div id="savedFiles" class="mt-3"></div>
+            <div id="savedFiles" class="mt-3"></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Registration Required Modal -->
+  <!-- Locate Downloaded File -->
   <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content section-card p-3">
         <div class="modal-header border-0">
           <h5 class="modal-title fw-bold" id="registerModalLabel">
-            <i class="fa-solid fa-user-lock me-2 text-danger"></i>
-            Registration Required
+            <i class="fa-solid fa-file me-2 file-color"></i>
+            Locate Downloaded File
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body text-center">
-          <p class="mb-3 fs-5">
-            Please register or log in to access the download features.<br>
-            Creating an account is free and gives you access to CSV and Excel exports, usage tracking, and more.
-          </p>
-          <div class="d-flex flex-column flex-md-row justify-content-center gap-2">
-            <a href="signup.html" class="btn btn-primary">Sign Up</a>
-            <a href="login.html" class="btn btn-outline-secondary">Log In</a>
+        <div class="modal-body">
+          <div class="container mt-3">
+            <small class="text-muted"><em>Select the file you want to view or manage:</em></small><br>
+            <ul class="list-group">
+              <li class="list-group-item rename-file-item d-flex align-items-center justify-content-between"><span><i class="fa-solid fa-file me-2 file-color"></i><span class="file-name" onclick="openManagedFile(this)">Company Users Email</span></span><i class="fa-solid fa-pen pen-icon ms-2" onclick="enableRename(this.parentElement.querySelector('.file-name'))" title="Rename"></i></li>
+              <li class="list-group-item active-add-file rename-file-item d-flex align-items-center justify-content-between"><span><i class="fa-solid fa-file me-2 file-color"></i><span class="file-name" onclick="openManagedFile(this)">New Users Email</span></span><i class="fa-solid fa-pen pen-icon ms-2" onclick="enableRename(this.parentElement.querySelector('.file-name'))" title="Rename"></i></li>
+              <li class="list-group-item rename-file-item d-flex align-items-center justify-content-between"><span><i class="fa-solid fa-file me-2 file-color"></i><span class="file-name" onclick="openManagedFile(this)">Graduate Email</span></span><i class="fa-solid fa-pen pen-icon ms-2" onclick="enableRename(this.parentElement.querySelector('.file-name'))" title="Rename"></i></li>
+              <li class="list-group-item rename-file-item d-flex align-items-center justify-content-between"><span><i class="fa-solid fa-file me-2 file-color"></i><span class="file-name" onclick="openManagedFile(this)">Student Email</span></span><i class="fa-solid fa-pen pen-icon ms-2" onclick="enableRename(this.parentElement.querySelector('.file-name'))" title="Rename"></i></li>
+              <li class="list-group-item rename-file-item d-flex align-items-center justify-content-between"><span><i class="fa-solid fa-file me-2 file-color"></i><span class="file-name" onclick="openManagedFile(this)">Family Email</span></span><i class="fa-solid fa-pen pen-icon ms-2" onclick="enableRename(this.parentElement.querySelector('.file-name'))" title="Rename"></i></li>
+            </ul>
+          </div>
+          <br>
+          <div class="d-flex flex-column flex-md-row justify-content-end gap-2">
+            <div class="form-check">
+              <input class="form-check-input checkbox-color" type="checkbox" id="check1" name="option1" value="something">
+              <label class="form-check-label">Remember my choice</label>
+            </div>
           </div>
           <hr class="my-3">
           <small class="text-muted">
-            Already have an account? Log in to unlock all features.
+            Only valid emails will be added to your file.
           </small>
         </div>
       </div>
@@ -227,5 +239,233 @@
   </footer>
 
   <script src="bootstrap/js/bootstrap.min.js"></script>
+<script>
+// Simulated file contents
+const fileContents = {
+  'Company Users Email': 'Email,Status\ncompany1@example.com,Valid\ncompany2@example.com,Valid',
+  'New Users Email': 'Email,Status\nnewuser1@example.com,Valid\nnewuser2@example.com,Valid',
+  'Graduate Email': 'Email,Status\ngrad1@example.com,Valid\ngrad2@example.com,Valid',
+  'Student Email': 'Email,Status\nstudent1@example.com,Valid\nstudent2@example.com,Valid',
+  'Family Email': 'Email,Status\nfamily1@example.com,Valid\nfamily2@example.com,Valid'
+};
+
+function openManagedFile(span) {
+  const name = span.textContent.trim();
+  const content = fileContents[name] || 'Email,Status\nexample@example.com,Valid';
+  // Default to CSV for demo; you can add logic for .xls if needed
+  openFileInNewTab(content, name.replace(/\s+/g, '_').toLowerCase() + '.csv', 'text/csv');
+}
+
+// Load fileManager.js
+// Make sure this script is included after fileManager.js in your HTML
+function enableRename(span) {
+  if (span.classList.contains('editing')) return;
+  const currentName = span.textContent;
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.value = currentName;
+  input.className = 'form-control form-control-sm d-inline w-auto rename-input';
+  span.replaceWith(input);
+  input.focus();
+  input.onblur = function() {
+    finishRename(input);
+  };
+  input.onkeydown = function(e) {
+    if (e.key === 'Enter') {
+      finishRename(input);
+    } else if (e.key === 'Escape') {
+      cancelRename(input, currentName);
+    }
+  };
+}
+
+function finishRename(input) {
+  const newName = input.value.trim() || 'Untitled File';
+  const span = document.createElement('span');
+  span.className = 'file-name';
+  span.textContent = newName;
+  span.onclick = function() { enableRename(span); };
+  input.replaceWith(span);
+}
+
+function cancelRename(input, oldName) {
+  const span = document.createElement('span');
+  span.className = 'file-name';
+  span.textContent = oldName;
+  span.onclick = function() { enableRename(span); };
+  input.replaceWith(span);
+}
+</script>
+
+<script>
+
+function handleCheck() {
+  const emailInput = document.getElementById('emailInput');
+  const resultBox = document.getElementById('resultBox');
+  const email = emailInput.value.trim();
+  if (!email) {
+    resultBox.innerHTML = '<span class="text-danger">Please enter an email address.</span>';
+    return;
+  }
+  // Simple email validation
+  const valid = /^[^@]+@[^@]+\.[^@]+$/.test(email);
+  checkedEmails.push({ email, status: valid ? 'Valid' : 'Invalid' });
+  resultBox.innerHTML = valid
+    ? '<span class="badge bg-valid">Valid Email</span>'
+    : '<span class="badge bg-invalid">Invalid Email</span>';
+  emailInput.value = '';
+  updateSavedFiles();
+}
+
+function downloadCSV() {
+  if (!isLoggedIn) {
+    showRegisterModal();
+    return;
+  }
+  if (checkedEmails.length === 0) {
+    alert('No emails to download.');
+    return;
+  }
+  let csv = 'Email,Status\n' + checkedEmails.map(e => `${e.email},${e.status}`).join('\n');
+  downloadFile(csv, 'checked_emails.csv', 'text/csv');
+}
+
+function downloadExcel() {
+  if (!isLoggedIn) {
+    showRegisterModal();
+    return;
+  }
+  if (checkedEmails.length === 0) {
+    alert('No emails to download.');
+    return;
+  }
+  // Simple Excel (CSV with .xls extension)
+  let excel = 'Email\tStatus\n' + checkedEmails.map(e => `${e.email}\t${e.status}`).join('\n');
+  downloadFile(excel, 'checked_emails.xls', 'application/vnd.ms-excel');
+}
+
+function downloadFile(content, filename, mime) {
+  const blob = new Blob([content], { type: mime });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  addSavedFile(filename);
+}
+
+function showRegisterModal() {
+  const modal = new bootstrap.Modal(document.getElementById('registerModal'));
+  modal.show();
+}
+
+// Manage saved files (frontend only)
+function addSavedFile(filename) {
+  savedFiles.push(filename);
+  updateSavedFiles();
+}
+function updateSavedFiles() {
+  const filesDiv = document.getElementById('savedFiles');
+  if (!filesDiv) return;
+  filesDiv.innerHTML = savedFiles.length
+    ? '<strong>Downloaded Files:</strong><ul>' + savedFiles.map(f => `<li>${f}</li>`).join('') + '</ul>'
+    : '';
+}
+
+// Optional: Simulate login for demo
+function simulateLogin() {
+  isLoggedIn = true;
+  alert('You are now logged in! Download features unlocked.');
+}
+</script>
+
+<script>
+let checkedEmails = [];
+let isLoggedIn = false; // Simulate login status
+
+function handleCheck() {
+  const emailInput = document.getElementById('emailInput');
+  const resultBox = document.getElementById('resultBox');
+  const email = emailInput.value.trim();
+  if (!email) {
+    resultBox.innerHTML = '<span class="text-danger">Please enter an email address.</span>';
+    return;
+  }
+  // Simple email validation
+  const valid = /^[^@]+@[^@]+\.[^@]+$/.test(email);
+  checkedEmails.push({ email, status: valid ? 'Valid' : 'Invalid' });
+  resultBox.innerHTML = valid
+    ? '<span class="badge bg-valid">Valid Email</span>'
+    : '<span class="badge bg-invalid">Invalid Email</span>';
+  emailInput.value = '';
+  updateSavedFiles();
+}
+
+function downloadCSV() {
+  if (!isLoggedIn) {
+    showRegisterModal();
+    return;
+  }
+  if (checkedEmails.length === 0) {
+    alert('No emails to download.');
+    return;
+  }
+  let csv = 'Email,Status\n' + checkedEmails.map(e => `${e.email},${e.status}`).join('\n');
+  downloadFile(csv, 'checked_emails.csv', 'text/csv');
+}
+
+function downloadExcel() {
+  if (!isLoggedIn) {
+    showRegisterModal();
+    return;
+  }
+  if (checkedEmails.length === 0) {
+    alert('No emails to download.');
+    return;
+  }
+  // Simple Excel (CSV with .xls extension)
+  let excel = 'Email\tStatus\n' + checkedEmails.map(e => `${e.email}\t${e.status}`).join('\n');
+  downloadFile(excel, 'checked_emails.xls', 'application/vnd.ms-excel');
+}
+
+function downloadFile(content, filename, mime) {
+  const blob = new Blob([content], { type: mime });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  addSavedFile(filename);
+}
+
+function showRegisterModal() {
+  const modal = new bootstrap.Modal(document.getElementById('registerModal'));
+  modal.show();
+}
+
+// Manage saved files (frontend only)
+function addSavedFile(filename) {
+  savedFiles.push(filename);
+  updateSavedFiles();
+}
+function updateSavedFiles() {
+  const filesDiv = document.getElementById('savedFiles');
+  if (!filesDiv) return;
+  filesDiv.innerHTML = savedFiles.length
+    ? '<strong>Downloaded Files:</strong><ul>' + savedFiles.map(f => `<li>${f}</li>`).join('') + '</ul>'
+    : '';
+}
+
+// Optional: Simulate login for demo
+function simulateLogin() {
+  isLoggedIn = true;
+  alert('You are now logged in! Download features unlocked.');
+}
+</script>
+<button class="btn btn-success btn-sm mt-2" onclick="simulateLogin()">Demo Login</button>
+
+<script src="js/fileManager.js"></script>
 </body>
 </html>
