@@ -1,0 +1,44 @@
+relational database diagram for your Email Checker project:
+
+Tables and Relationships:
+
+users
+
+id (PK)
+name
+email
+password_hash
+plan_id (FK)
+created_at
+plans
+
+id (PK)
+name
+max_checks_per_month
+price
+email_checks
+
+id (PK)
+user_id (FK)
+email
+status (Valid/Invalid)
+checked_at
+files
+
+id (PK)
+user_id (FK)
+filename
+file_type (csv/xls)
+created_at
+file_emails
+
+id (PK)
+file_id (FK)
+email
+status
+Relationships:
+
+users.plan_id → plans.id
+email_checks.user_id → users.id
+files.user_id → users.id
+file_emails.file_id → files.id
