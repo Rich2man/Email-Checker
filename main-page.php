@@ -1,3 +1,14 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+if (!isset($_SESSION['user_id'])) {
+  $_SESSION['message'] = 'Please log in to access the main page.';
+  header('Location: login.php');
+  exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,8 +37,8 @@
           <li class="nav-item"><a class="nav-link text-white" href="explore_plans.html">Explore Plans</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="email-checker.html">Email-Checker</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="help.html">Help</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="login.html">Login</a></li>
-          <li class="nav-item ms-lg-3"><a class="btn btn-accent" href="signup.html">Sign Up</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#your-files">Your Files</a></li>
+          <li class="nav-item ms-lg-3"><a class="btn btn-accent" href="logout.php">Log Out</a></li>
         </ul>
       </div>
     </div>

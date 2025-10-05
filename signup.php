@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Login | Email Checker</title>
+  <title>Sign Up | Email Checker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Bootstrap CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -26,34 +26,60 @@
           <li class="nav-item"><a class="nav-link text-white" href="explore_plans.html">Explore Plans</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="email-checker.html">Email-Checker</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="help.html">Help</a></li>
-          <li class="nav-item"><a class="nav-link text-white active" href="#">Login</a></li>
-          <li class="nav-item ms-lg-3"><a class="btn btn-accent" href="signup.html">Sign Up</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="login.php">Login</a></li>
+          <li class="nav-item ms-lg-3"><a class="btn btn-accent" href="#">Sign Up</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Login Section -->
+  <!-- Sign Up Section -->
   <section class="section py-5">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-6 col-lg-5">
           <div class="section-card p-4">
-            <h2 class="fw-bold mb-4 text-center" style="color: var(--color-30);">Login</h2>
-            <form>
+            <h2 class="fw-bold mb-4 text-center" style="color: var(--color-30);">Sign Up</h2>
+            <?php
+            if (session_status() === PHP_SESSION_NONE) {
+              session_start();
+            }
+            if (isset($_SESSION['message']) && $_SESSION['message']) {
+              echo '<div class="alert alert-info text-center" style="margin-top:20px;">' . htmlspecialchars($_SESSION['message']) . '</div>';
+              unset($_SESSION['message']);
+            }
+            ?>
+            <form action="php/register.php" method="POST" onsubmit="return validateForm(this)">
               <div class="mb-3">
-                <label for="loginEmail" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="loginEmail" placeholder="you@email.com" required>
+                <label for="signupName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="signupName" name="name" placeholder="Your Name" required>
               </div>
               <div class="mb-3">
-                <label for="loginPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                <label for="signupEmail" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="signupEmail" name="email" placeholder="you@email.com" required>
               </div>
-              <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="rememberMe">
-                <label class="form-check-label" for="rememberMe">Remember me</label>
+              <div class="mb-3">
+                <label for="signupPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="signupPassword" name="password" placeholder="Password" required>
+                <script src="js/security.js"></script>
               </div>
-              <button type="submit" class="btn btn-danger w-100 mb-2">Login</button>
+              <div class="mb-3">
+                <label for="signupConfirm" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="signupConfirm" name="confirm" placeholder="Confirm Password" required>
+                <script>
+                document.querySelector('form').onsubmit = function(e) {
+                  var pass = document.getElementById('signupPassword').value;
+                  var conf = document.getElementById('signupConfirm').value;
+                  if (pass !== conf) {
+                    alert('Passwords do not match!');
+                    e.preventDefault();
+                    return false;
+                  }
+                  return validateForm(this);
+                };
+                </script>
+              </div>
+              <button type="submit" class="btn btn-danger w-100 mb-2">Sign Up</button>
               <div class="text-center mb-2">
                 <span class="text-muted">or</span>
               </div>
@@ -63,14 +89,11 @@
               <button type="button" class="btn btn-outline-secondary w-100">
                 <i class="fab fa-google me-2"></i>Continue with Google
               </button>
-              <div class="text-end mt-2">
-                <a href="forgot-password.html" class="small">Forgot password?</a>
-              </div>
             </form>
             <hr class="my-4">
             <div class="text-center">
-              <span>Don't have an account?</span>
-              <a href="signup.html" class="fw-bold" style="color: var(--color-10);">Sign Up</a>
+              <span>Already have an account?</span>
+              <a href="login.php" class="fw-bold" style="color: var(--color-10);">Login</a>
             </div>
           </div>
         </div>
@@ -91,8 +114,8 @@
           <ul class="list-unstyled">
             <li><a href="index.html" class="footer-link">Home</a></li>
             <li><a href="why_us.html" class="footer-link">Why Us</a></li>
-            <li><a href="login.html" class="footer-link">Login</a></li>
-            <li><a href="signup.html" class="footer-link">Sign-Up</a></li>
+            <li><a href="login.php" class="footer-link">Login</a></li>
+            <li><a href="signup.php" class="footer-link">Sign-Up</a></li>
           </ul>
         </div>
         <div class="col-md-4 text-center text-md-end">
